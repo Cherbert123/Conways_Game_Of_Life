@@ -53,10 +53,13 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		gamePanel = new WorldPanel(WIDTH,HEIGHT,CELLS_PER_ROW);
 		startStopButton = new JButton();
 		startStopButton.setText("Start");
+		startStopButton.addActionListener(this);
 		randomizeButton = new JButton();
 		randomizeButton.setText("Randomize");
+		randomizeButton.addActionListener(this);
 		clearButton = new JButton();
 		clearButton.setText("Clear");
+		clearButton.addActionListener(this);
 		speedLabel = new JLabel();
 		speedLabel.setText("Speed");
 		speedField = new JTextField();
@@ -92,6 +95,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 			// call randomizeCells
 		if(e.getSource() == randomizeButton) {
 			gamePanel.randomizeCells();
+			System.out.println("Pressed");
 		}
 		// if clearButton is pressed
 			//call clearCells

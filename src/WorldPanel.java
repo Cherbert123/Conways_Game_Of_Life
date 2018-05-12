@@ -5,10 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import org.omg.Messaging.SyncScopeHelper;
 
 public class WorldPanel extends JPanel implements MouseListener, ActionListener {
 	private int cellsPerRow;
@@ -23,17 +27,28 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		this.cellsPerRow = cpr;
 	
 		//calculate the cellSize
-	
+		cellSize = w/cpr;
 		
 		//initialize the cells array
-		
+		cells = new Cell[w][h];
 		
 		//initialize each cell in the array
-		
+		for (int j = 0; j < cells.length; j++) {
+		for (int i = 0; i < cells.length; i++) {
+			cells[i][j] = new Cell(i,j,cellSize);
+			System.out.println("CellMade " + i + ", " + j);
+		}
+		}
 	}
 	
 	public void randomizeCells() {
 		// make each cell alive or dead randomly
+		for (int j = 0; j < cells.length; j++) {
+			for (int i = 0; i < cells.length; i++) {
+				cells[i][j].draw(getGraphics());
+				
+			}
+			}
 		repaint();
 	}
 	
