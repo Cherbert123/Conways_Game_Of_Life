@@ -45,15 +45,33 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// make each cell alive or dead randomly
 		for (int j = 0; j < cells.length; j++) {
 			for (int i = 0; i < cells.length; i++) {
-				cells[i][j].draw(getGraphics());
+				Random rand = new Random();
+				if(rand.nextInt(2) == 1){
+					cells[i][j].isAlive = true;
+					cells[i][j].draw(getGraphics());
+					
+				} else {
+					cells[i][j].isAlive = false;
+				}
+
 				
 			}
 			}
-		repaint();
+		
 	}
 	
 	public void clearCells() {
 		// set isAlive to false for all cells
+		for (int j = 0; j < cells.length; j++) {
+			for (int i = 0; i < cells.length; i++) {
+
+
+					cells[i][j].isAlive = false;
+
+
+				
+			}
+			}
 		repaint();
 	}
 	

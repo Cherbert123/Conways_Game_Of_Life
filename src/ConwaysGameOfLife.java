@@ -71,7 +71,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		inputPanel.add(clearButton);
 		inputPanel.add(gamePanel);
 		window.setVisible(true);
-		window.pack();
+		window.setBounds(200, 200, 800, 800);
 	}
 	
 	@Override
@@ -96,6 +96,8 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		if(e.getSource() == randomizeButton) {
 			gamePanel.randomizeCells();
 			System.out.println("Pressed");
+			window.setBounds(200, 200, 800, 800);
+			
 		}
 		// if clearButton is pressed
 			//call clearCells
