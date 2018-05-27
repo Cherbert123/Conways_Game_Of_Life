@@ -27,11 +27,11 @@ import javax.swing.JTextField;
  */
 
 public class ConwaysGameOfLife extends JPanel implements ActionListener{
-	public static final int WIDTH = 700;
-	public static final int HEIGHT = 700;
-	public static final int CELLS_PER_ROW = 350;
+	public static final int WIDTH = 500;
+	public static final int HEIGHT = 500;
+	public static final int CELLS_PER_ROW = 500;
 	
-	private boolean isRunning = false;
+	public boolean isRunning = false;
 	
 	private JFrame window;
 	private JPanel inputPanel;
@@ -84,8 +84,7 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 				isRunning = true;
 				startStopButton.setText("Stop");
 				gamePanel.startAnimation();
-			}
-			if(isRunning == true) {
+			} else if(isRunning == true) {
 				isRunning = false;
 				startStopButton.setText("Start");
 				gamePanel.stopAnimation();

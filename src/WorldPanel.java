@@ -20,6 +20,16 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	private Cell[][] cells;
 	private Timer timer;
 	
+	public void reDraw() {
+		for (int j = 0; j < cells.length; j++) {
+			for (int i = 0; i < cells.length; i++) {
+					cells[i][j].draw(getGraphics());
+			}
+		}
+		
+	}
+	
+	
 	public WorldPanel(int w, int h, int cpr) {
 		setPreferredSize(new Dimension(w, h));
 		addMouseListener(this);
@@ -36,17 +46,16 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		for (int j = 0; j < cells.length; j++) {
 		for (int i = 0; i < cells.length; i++) {
 			cells[i][j] = new Cell(i,j,cellSize);
-			System.out.println("CellMade " + i + ", " + j);
 		}
 		}
 	}
 	
 	public void randomizeCells() {
+		Random rand = new Random();
 		// make each cell alive or dead randomly
 		for (int j = 0; j < cells.length; j++) {
 			for (int i = 0; i < cells.length; i++) {
-				Random rand = new Random();
-				if(rand.nextInt(2) == 1){
+				if(rand.nextInt(8) == 1){
 					cells[i][j].isAlive = true;
 					cells[i][j].draw(getGraphics());
 					
@@ -57,6 +66,9 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				
 			}
 			}
+		reDraw();
+	
+		
 		
 	}
 	
@@ -64,15 +76,12 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// set isAlive to false for all cells
 		for (int j = 0; j < cells.length; j++) {
 			for (int i = 0; i < cells.length; i++) {
-
-
 					cells[i][j].isAlive = false;
-
-
-				
+					
 			}
-			}
-		repaint();
+		}
+		reDraw();
+		
 	}
 	
 	public void startAnimation() {
@@ -100,7 +109,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		//iterate through the cells and populate the numLivingNbors array with their neighbors
 		
 		
-		repaint();
+		reDraw();
 	}
 	
 	//returns an array list of the  8 or less neighbors of the 
@@ -137,7 +146,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		
 		//toggle the cell at that location to either alive or dead
 		//based on its current state
-		repaint();
+		reDraw();
 	}
 
 	@Override
