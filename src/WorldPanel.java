@@ -104,10 +104,19 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	//advances world one step
 	public void step() {
 		//initialize the numLivingNbors variable to be the same size as the cells
-		int[][] numLivingNbors;
+		int[][] numLivingNbors = new int[cells[0].length][cells[0].length];
 		
 		//iterate through the cells and populate the numLivingNbors array with their neighbors
-		
+		for (int j = 0; j < cells.length; j++) {
+			for (int i = 0; i < cells.length; i++) {
+					numLivingNbors[i][j] = getLivingNeighbors(i,j);
+			}
+		}
+		for (int j = 0; j < cells.length; j++) {
+			for (int i = 0; i < cells.length; i++) {
+					cells[i][j].liveOrDie(numLivingNbors[i][j]);
+			}
+		}
 		
 		reDraw();
 	}
@@ -116,6 +125,49 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	//cell identified by x and y
 	public int getLivingNeighbors(int x, int y){
 		int livingNeighbors = 0;
+		if (x != 0) {
+			if (cells[x - 1][y].isAlive == true) {
+				livingNeighbors++;
+			}
+			if (y != cells[y].length - 1) {
+			if (cells[x - 1][y + 1].isAlive == true) {
+				livingNeighbors++;
+			}
+			}
+			if (y != 0) {
+			if (cells[x - 1][y - 1].isAlive == true ) {
+				livingNeighbors++;
+			}
+			}
+		}
+		if (y != 0) {
+			if (cells[x][y - 1].isAlive == true) {
+				livingNeighbors++;
+			}
+			if (x != cells[x].length - 1) {
+			if (cells[x + 1][y - 1].isAlive == true) {
+				livingNeighbors++;
+			}
+			}
+		}
+		if (x != cells[x].length - 1) {
+		if (cells[x + 1][y].isAlive == true) {
+			livingNeighbors++;
+		}
+			if (y != cells[y].length - 1) {
+				if (cells[x + 1][y + 1].isAlive == true) {
+					livingNeighbors++;
+				}
+			}
+		}
+		if (y != cells[y].length - 1) {
+		if (cells[x][y + 1].isAlive == true) {
+			livingNeighbors++;
+		}
+		}
+		
+		
+		
 		
 		//add 1 to livingNeighbors for each
 		//neighboring cell that is alive
