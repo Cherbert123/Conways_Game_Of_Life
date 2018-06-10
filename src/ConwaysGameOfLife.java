@@ -29,7 +29,7 @@ import javax.swing.JTextField;
 public class ConwaysGameOfLife extends JPanel implements ActionListener{
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
-	public static final int CELLS_PER_ROW = 500;
+	public static final int CELLS_PER_ROW = 100;
 	
 	public boolean isRunning = false;
 	
@@ -40,6 +40,9 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 	private JButton clearButton;
 	private JLabel speedLabel;
 	private JTextField speedField;
+	private JButton benchMarkButton;
+	private JButton benchMarkButton2;
+	
 	
 	private WorldPanel gamePanel;
 	
@@ -51,6 +54,12 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		window = new JFrame();
 		inputPanel = new JPanel();
 		gamePanel = new WorldPanel(WIDTH,HEIGHT,CELLS_PER_ROW);
+		benchMarkButton = new JButton();
+		benchMarkButton.addActionListener(this);
+		benchMarkButton.setText("Benchmark #1");
+		benchMarkButton2 = new JButton();
+		benchMarkButton2.addActionListener(this);
+		benchMarkButton2.setText("Benchmark #2");
 		startStopButton = new JButton();
 		startStopButton.setText("Start");
 		startStopButton.addActionListener(this);
@@ -63,7 +72,9 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		speedLabel = new JLabel();
 		speedLabel.setText("Speed");
 		speedField = new JTextField();
-		speedField.setText("500");
+		speedField.setText("" + gamePanel.getTimer());
+		speedField = new JTextField();
+		speedField.setText("" + gamePanel.getTimer());
 		//build the window and start the simulation
 		window.add(inputPanel);
 		inputPanel.add(startStopButton);
@@ -73,6 +84,8 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		inputPanel.add(randomizeButton);
 		inputPanel.add(clearButton);
 		inputPanel.add(gamePanel);
+		inputPanel.add(benchMarkButton);
+		inputPanel.add(benchMarkButton2);
 		window.setVisible(true);
 		window.setBounds(200, 200, 800, 800);
 	}
@@ -87,10 +100,14 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 				isRunning = true;
 				startStopButton.setText("Stop");
 				gamePanel.startAnimation();
+				gamePanel.setAnimationDelay(Integer.parseInt(speedField.getText()));
+				speedField.setText("" + gamePanel.getTimer());
 			} else if(isRunning == true) {
 				isRunning = false;
 				startStopButton.setText("Start");
 				gamePanel.stopAnimation();
+				gamePanel.setAnimationDelay(Integer.parseInt(speedField.getText()));
+				speedField.setText("" + gamePanel.getTimer());
 			}
 		}
 		// if ranomizeButton is pressed
@@ -105,6 +122,16 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 			//call clearCells
 		if(e.getSource() == clearButton) {
 			gamePanel.clearCells();
+		}
+		if(e.getSource() == benchMarkButton) {
+			gamePanel.benchmarkTrigger();
+			gamePanel.setAnimationDelay(Integer.parseInt(speedField.getText()));
+			speedField.setText("" + gamePanel.getTimer());
+		}
+		if(e.getSource() == benchMarkButton2) {
+			gamePanel.benchmarkTrigger2();
+			gamePanel.setAnimationDelay(Integer.parseInt(speedField.getText()));
+			speedField.setText("" + gamePanel.getTimer());
 		}
 	}
 	}

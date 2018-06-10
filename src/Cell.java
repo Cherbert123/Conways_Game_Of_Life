@@ -52,10 +52,11 @@ public class Cell implements Drawable{
 	public void draw(Graphics g) {
 		if (isAlive == true) {
 			g.setColor(Color.RED);
-			g.drawRect(x, y, cellSize, cellSize);
+			g.fillRect(x, y, cellSize, cellSize);
 		} else {
-			g.setColor(new Color(238,238,238));
-			g.drawRect(x, y, cellSize, cellSize);
+			//238 for natural (invisible) background
+			g.setColor(new Color(250,250,250));
+			g.fillRect(x, y, cellSize, cellSize);
 		}
 	}
 }

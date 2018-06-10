@@ -33,19 +33,19 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	public WorldPanel(int w, int h, int cpr) {
 		setPreferredSize(new Dimension(w, h));
 		addMouseListener(this);
-		timer = new Timer(500, this);
+		timer = new Timer(250, this);
 		this.cellsPerRow = cpr;
 	
 		//calculate the cellSize
 		cellSize = w/cpr;
 		
 		//initialize the cells array
-		cells = new Cell[w][h];
+		cells = new Cell[cpr][cpr];
 		
 		//initialize each cell in the array
-		for (int j = 0; j < cells.length; j++) {
-		for (int i = 0; i < cells.length; i++) {
-			cells[i][j] = new Cell(i,j,cellSize);
+		for (int j = 0; j < cpr; j++) {
+		for (int i = 0; i < cpr; i++) {
+			cells[i][j] = new Cell(i * cellSize,j * cellSize,cellSize);
 		}
 		}
 	}
@@ -191,11 +191,15 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// IGNORE
 		
 	}
+	public int getTimer() {
+		return timer.getDelay();
+		
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//get the location of the mouse
-		
+		cells[e.getX()][e.getY()].isAlive = true;
 		//toggle the cell at that location to either alive or dead
 		//based on its current state
 		reDraw();
@@ -210,5 +214,17 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		step();		
+	}
+	public void benchmarkTrigger() {
+		for (int i = 0; i < cells[0].length; i++) {
+			cells[i][cells[0].length / 2].isAlive = true;
+		}
+		reDraw();
+	}
+	public void benchmarkTrigger2() {
+		for (int i = 0; i < cells[0].length; i++) {
+			cells[cells[0].length / 2][i].isAlive = true;
+		}
+		reDraw();
 	}
 }
