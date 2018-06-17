@@ -71,12 +71,12 @@ public class ConwaysGameOfLife extends JPanel implements ActionListener{
 		clearButton.addActionListener(this);
 		speedLabel = new JLabel();
 		speedLabel.setText("Speed");
-		speedField = new JTextField();
+		speedField = new JTextField(3);
 		speedField.setText("" + gamePanel.getTimer());
-		speedField = new JTextField();
-		speedField.setText("" + gamePanel.getTimer());
+	
 		//build the window and start the simulation
 		window.add(inputPanel);
+		window.setDefaultCloseOperation(3);
 		inputPanel.add(startStopButton);
 		inputPanel.add(speedLabel);
 		inputPanel.add(speedField);

@@ -32,7 +32,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	
 	public WorldPanel(int w, int h, int cpr) {
 		setPreferredSize(new Dimension(w, h));
-		addMouseListener(this);
+		this.addMouseListener(this);
 		timer = new Timer(250, this);
 		this.cellsPerRow = cpr;
 	
@@ -199,10 +199,13 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//get the location of the mouse
-		cells[e.getX()][e.getY()].isAlive = true;
+
+		cells[e.getX()/cellSize][e.getY()/cellSize].isAlive = true;
+
 		//toggle the cell at that location to either alive or dead
 		//based on its current state
 		reDraw();
+		
 	}
 
 	@Override
