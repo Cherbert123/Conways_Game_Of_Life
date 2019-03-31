@@ -27,8 +27,8 @@ import javax.swing.JTextField;
  */
 
 public class ConwaysGameOfLife extends JPanel implements ActionListener{
-	public static final int WIDTH = 500;
-	public static final int HEIGHT = 500;
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 1000;
 	public static final int CELLS_PER_ROW = 100;
 	
 	public boolean isRunning = false;

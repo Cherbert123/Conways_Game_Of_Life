@@ -1,0 +1,53 @@
+1.
+
+FileWriter fw = new FileWriter("file");
+fw.write("Message");
+fw.close;
+
+2.
+null
+
+3.
+Thread t = new Thread(()->{ Robot r = new Robot(); for(int i = 0; i < 4; i++){ r.move(20); r.turn(90); }});
+
+4.
+FileReader fr = new BufferedReader(".../dictionary.txt");
+
+5.
+Stream<Integer> numsStream = nums.stream();
+
+6.
+Stream<Double> doubleList = Arrays.stream(list).sorted;
+
+7.
+button.addActionListener((e)->{ 
+	interfaceName.close;
+});
+
+8.
+JFrame frame = new JFrame();
+JPanel panel = new JPanel();
+frame.add(panel)
+frame.isVisible() = true;
+
+9.
+16
+
+10.
+a) 5
+b) 9
+c) 93
+d) 54
+
+11.
+a) 100
+b) 1111
+c) 1100100
+d) 10000100
+
+12.
+a) B: 11 D: 3
+b)
+c)
+d)
+e)
